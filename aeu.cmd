@@ -1,23 +1,42 @@
-:: ===================================================================
-:: Startup ===========================================================
-:: ===================================================================
+:: ====================================================================================================
+:: ========== File: aeu.cmd                                                                  ==========
+:: ========== Author: Alexander Ashbrooke                                                    ==========
+:: ========== Description: A helpful batch utility to help Dungeon Masters keep track of     ==========
+:: ==========                  their encounters. The utility tracks player and enemy health, ==========
+:: ==========                  healing, and combat stats.                                    ==========
+:: ====================================================================================================
+
+
+:: ====================================================================================================
+:: Startup ============================================================================================
+:: ====================================================================================================
 @ECHO OFF
 SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
+
+:: Setting variables for logging and startup configuration
 SET me=%~n0
 SET parent=%~dp0
 SET Version=1.1b
 SET IniValidation=FALSE
 SET Players=0
+
 :: Default File Save Names
 SET logfile=aeulog.log
 SET inifile=aeuini.sav
 
+:: Setting window size and current menu
 SET CurMenu=MainMenu
 MODE CON:COLS=82 LINES=24
 
-
 CALL :SplashScreen
 
+:: ====================================================================================================
+:: Menus ==============================================================================================
+:: ====================================================================================================
+
+:: ====================
+:: Main Menu
+:: ==========
 :Main
 CALL :%CurMenu%
 SET UserInput=NoInput
@@ -25,6 +44,9 @@ SET /P UserInput=
 
 GOTO :Settings
 
+:: ====================
+:: EXIT
+:: ==========
 :Exit
 EXIT /B 0
 
